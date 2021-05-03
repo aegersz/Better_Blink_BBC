@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE package-info SYSTEM "http://www.simplemachines.org/xml/package-info">
+<package-info xmlns="http://www.simplemachines.org/xml/package-info" xmlns:smf="http://www.simplemachines.org/">
+	<name>Better Blink BBC</name>
+	<id>aegersz:Better_Blink_BBC</id>
+	<version>1.32</version>
+	<type>modification</type>
+
+        <install for="2.1 - 2.1.99, 2.1 Beta 1 - 3, 2.1 RC1, 2.1 RC2, 2.1 RC3">
+                <!-- Mod Readme -->
+                <readme lang="english" parsebbc="true" type="file">readme.txt</readme>
+                <!-- BBC Files -->
+		<require-file name="blinkBBC.english.php" destination="$languagedir" />
+		<require-file name="blink.png" destination="$imagesdir/bbc" />
+		<require-dir name="Sources" destination="$boarddir">Source file</require-dir>
+                <!-- Hooks Install -->
+		<hook hook="integrate_bbc_codes" function="BBC_Blink_Code::bbc_code" file="$sourcedir/BBC-Blink.php" />
+		<hook hook="integrate_bbc_buttons" function="BBC_Blink_Button::bbc_button" file="$sourcedir/BBC-Blink.php" />
+        </install>
+
+        <uninstall for="2.1 - 2.1.99, 2.1 Beta 1 - 3, 2.1 RC1, 2.1 RC2, 2.1 RC3">
+                <!-- Hooks Remove -->
+		<hook hook="integrate_bbc_buttons" function="BBC_Blink_Button:bbc_button" file="$sourcedir/BBC-Blink.php" reverse="true" />
+		<hook hook="integrate_bbc_codes" function="BBC_Blink_Code::bbc_code" file="$sourcedir/BBC-Blink.php" reverse="true" />
+		<!-- BBC Files -->
+		<remove-file name="$sourcedir/BBC-Blink.php">Source file</remove-file>
+		<remove-file name="$imagesdir/bbc/blink.png" />
+		<remove-file name="$languagedir/blinkBBC.english.php" />
+        </uninstall>
+
+</package-info>
